@@ -1,0 +1,16 @@
+#!/bin/sh
+localHost="server_name"
+file_system1="/fileSyetem_name"
+MAIL_LIST="abc@mail.com"
+
+used=$(df -h $file_system1 | awk 'END{print column_disk_space_percent(eg.$5)}' | cut -d '%' -f1 )
+
+if [ "$used" -ge "80" ]
+
+then  #if usage is greater or equal 80% send email communiation
+
+#Email Results
+
+( echo "Message : FS at $used% ")| mailx -s "$localHost FILE SYSTEM ALERT" ${MAIL_LIST}
+
+fi
