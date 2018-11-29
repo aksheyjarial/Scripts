@@ -1,0 +1,21 @@
+#!/bin/sh
+
+process_name=`ps -fu process_name | egrep 'process_name'|grep -v egrep |awk '{print $2}'`
+if [ "$process_name" != "" ]
+then
+echo " process_name is RUNNING with PID $process_name " >> output.txt
+else
+echo " process_name is NOT RUNNING ">>output.txt
+echo " process_name is NOT RUNNING ">>output_NOT.txt
+fi
+
+
+MAIL_LIST1="abc@mail.com"
+if [ -s output_NOT.txt ]
+then
+mailx -s " Application Status" ${MAIL_LIST1} < /path/output_NOT.txt
+rm output_NOT.txt
+fi
+#mailx -s " Application Status" ${MAIL_LIST1} < /path/output.txt
+
+rm  output.txt
