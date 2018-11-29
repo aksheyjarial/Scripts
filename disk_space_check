@@ -3,7 +3,7 @@ localHost="server_name"
 file_system1="/fileSyetem_name"
 MAIL_LIST="abc@mail.com"
 
-used=$(df -h $file_system1 | awk 'END{print column_disk_space_percent(eg.$5)}' | cut -d '%' -f1 )
+used=$(df -h $file_system1 | awk 'END{print {column_disk_space_percent(eg.$5)}}' | cut -d '%' -f1 )
 
 if [ "$used" -ge "80" ]
 
